@@ -1,0 +1,33 @@
+---
+title: "xflyr_vignette"
+author: Jane Wall
+date: November 21, 2019
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{xflyr_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message = FALSE, warning = FALSE}
+library(xflyr)
+#library(tidyverse)
+```
+
+xflyr contains functions to scrape data from the cross country paragliding website, <https://www.xcontest.org/world/en/pilots/>.  The top-level function xc_summary() reads in the pilot data from all the pages of the website and puts the pilot info together in one large dataset.
+
+```{r get_data}
+pilot_data <- xc_summary(limit_run = TRUE)
+head(pilot_data)
+nick_data <- pilot_data$nickname
+head(nick_data)
+```
+
+I plan to build additional functions that scrape the detailed data for each pilot from the detail website and put that data together into a nested list for analysis purposes.
